@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+    "settings":
+    {
+        "path": "/opt/arduino-1.8.1/arduino",
+        "board": "arduino:avr:uno",
+        "port": "/dev/ttyUSB1"
+    }
+}
