@@ -1,6 +1,6 @@
 #include "tweetnacl.h"
 
-#define BUFF_SIZE   256
+#define BUFF_SIZE   256+crypto_box_ZEROBYTES
 
 #define STATUS_LED  13
 
@@ -49,7 +49,7 @@ void loop() {
                         } else {
                             digitalWrite(STATUS_LED, LOW);
                         }
-                        int crypto_len = encrypted_len - crypto_box_BOXZEROBYTES;
+                        int crypto_len = encrypted_len - crypto_box_ZEROBYTES;
                         Serial.write(&crypto_out_buff[crypto_box_ZEROBYTES], crypto_len);
                     }
                     break;
