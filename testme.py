@@ -6,7 +6,7 @@ import random
 import string
 
 RESET_DELAY = 2
-DELAY = 0.5
+DELAY = 0.1
 
 
 def encrypt(serial_port, input):
@@ -20,7 +20,8 @@ def encrypt(serial_port, input):
     @return     The input, encrypted
     """
     s = serial_port
-    s.write("E"+input+"\n")
+    input_fmtd = chr(len(input) & 0xFF)+input+"E"
+    s.write(input_fmtd)
     time.sleep(DELAY)
     response = ""
     while s.inWaiting():
@@ -39,7 +40,8 @@ def decrypt(serial_port, input):
     @return     The input, decrypted
     """
     s = serial_port
-    s.write("D"+input+"\n")
+    input_fmtd = chr(len(input) & 0xFF)+input+"D"
+    s.write(input_fmtd)
     time.sleep(DELAY)
     response = ""
     while s.inWaiting():

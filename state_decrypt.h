@@ -1,25 +1,11 @@
-/**
- * @file
- * @author     Riley Wood (riley@clearmotion.com)
- * @copyright  2017 ClearMotion Inc., All Rights Reserved. * 
- * @defgroup   state_decrypt GROUP TITLE
- * @addtogroup state_decrypt
- * @{
- * 
- * @brief      DESCRIPTION HERE
- * 
- */
- 
-
 
 #ifndef STATE_DECRYPT_H
 #define STATE_DECRYPT_H
 
-#include <stdbool.h>
+#include "state.h"
+
 #include <stdint.h>
 
+void transition_to_decrypt(crypto_state_t * state, char * input, uint16_t input_len);
+
 #endif // STATE_DECRYPT_H
-
-
-/// @}
- 

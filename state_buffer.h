@@ -1,25 +1,12 @@
-/**
- * @file
- * @author     Riley Wood (riley@clearmotion.com)
- * @copyright  2017 ClearMotion Inc., All Rights Reserved. * 
- * @defgroup   state_buffer GROUP TITLE
- * @addtogroup state_buffer
- * @{
- * 
- * @brief      DESCRIPTION HERE
- * 
- */
- 
 
 
 #ifndef STATE_BUFFER_H
 #define STATE_BUFFER_H
 
-#include <stdbool.h>
+#include "state.h"
+
 #include <stdint.h>
 
+void transition_to_buffer(crypto_state_t * state, uint8_t input_l);
+
 #endif // STATE_BUFFER_H
-
-
-/// @}
- 

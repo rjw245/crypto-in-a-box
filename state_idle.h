@@ -1,25 +1,11 @@
-/**
- * @file
- * @author     Riley Wood (riley@clearmotion.com)
- * @copyright  2017 ClearMotion Inc., All Rights Reserved. * 
- * @defgroup   state_idle GROUP TITLE
- * @addtogroup state_idle
- * @{
- * 
- * @brief      DESCRIPTION HERE
- * 
- */
- 
 
 
 #ifndef STATE_IDLE_H
 #define STATE_IDLE_H
 
-#include <stdbool.h>
-#include <stdint.h>
+#include "state.h"
+
+void transition_to_idle(crypto_state_t * state);
 
 #endif // STATE_IDLE_H
 
-
-/// @}
- 
