@@ -11,8 +11,7 @@ DELAY = 0.5
 
 def encrypt(serial_port, input):
     """
-    @brief      Encrypt a string with crypto box.
-    @warning    Can't encrypt newlines
+    @brief      Encrypt a string with crypto box.\
 
     @param      serial_port  The serial port
     @param      input        The input, no newline at the end
@@ -32,7 +31,6 @@ def encrypt(serial_port, input):
 def decrypt(serial_port, input):
     """
     @brief      Decrypt a string with crypto box.
-    @warning    Can't decrypt newlines
 
     @param      serial_port  The serial port
     @param      input        The input, no newline at the end
