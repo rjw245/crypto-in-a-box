@@ -5,61 +5,24 @@ import unittest
 import random
 import string
 
+from crypto_box import CryptoBox
+
 RESET_DELAY = 2
-DELAY = 0.2
-
-
-def encrypt(serial_port, input):
-    """
-    @brief      Encrypt a string with crypto box.\
-
-    @param      serial_port  The serial port
-    @param      input        The input, no newline at the end
-
-    @return     The input, encrypted
-    """
-    s = serial_port
-    input_fmtd = chr(len(input) & 0xFF)+input+"E"
-    s.write(input_fmtd)
-    time.sleep(DELAY)
-    response = ""
-    while s.inWaiting():
-            response += s.read()
-    return response
-
-
-def decrypt(serial_port, input):
-    """
-    @brief      Decrypt a string with crypto box.
-
-    @param      serial_port  The serial port
-    @param      input        The input, no newline at the end
-
-    @return     The input, decrypted
-    """
-    s = serial_port
-    input_fmtd = chr(len(input) & 0xFF)+input+"D"
-    s.write(input_fmtd)
-    time.sleep(DELAY)
-    response = ""
-    while s.inWaiting():
-            response += s.read()
-    return response
 
 
 class TestCryptoBox(unittest.TestCase):
     def test_encrypt_then_decrypt_matches_input(self):
-        s = serial.Serial("/dev/ttyUSB0", 115200)
+        crypto = CryptoBox("/dev/ttyUSB0")
         time.sleep(RESET_DELAY)
 
         print ""
         for i in xrange(0, 100):
-            input_len = random.randint(1, 233)
+            input_len = 239 #random.randint(1, 233)
             possible_chars = [chr(x) for x in xrange(0, 256)]
             input = ''.join(random.choice(possible_chars) for _ in range(input_len))
-            encrypted = encrypt(s, input)
+            encrypted = crypto.encrypt(input)
 
-            decrypted = decrypt(s, encrypted)
+            decrypted = crypto.decrypt(encrypted)
             self.assertTrue(decrypted == input)
             sys.stdout.write(".")
             sys.stdout.flush()
