@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import serial
+import argparse
+import time
 
 
 class CryptoBox(object):
@@ -56,3 +58,20 @@ class CryptoBox(object):
         while len(response) < len(input) - self.CRYPTO_OVERHEAD:
             response += self.dev.read()
         return response
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('port', help='Serial port to use (i.e. /dev/ttyUSB0)')
+    args = parser.parse_args()
+    crypto = CryptoBox(args.port)
+
+    # Wait for Arduino to reset
+    time.sleep(2)
+
+    while True:
+        input = raw_input("Enter something to encrypt: ")
+        encrypted = crypto.encrypt(input)
+        print "Encrypted:", encrypted
+        print "Bytes:", [x for x in encrypted]
+        print ""
