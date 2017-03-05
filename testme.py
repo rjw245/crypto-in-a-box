@@ -6,7 +6,7 @@ import random
 import string
 
 RESET_DELAY = 2
-DELAY = 0.1
+DELAY = 0.5
 
 
 def encrypt(serial_port, input):
@@ -55,8 +55,9 @@ class TestCryptoBox(unittest.TestCase):
         time.sleep(RESET_DELAY)
 
         for i in xrange(0, 100):
-            rand_len = random.randint(1, 20)
-            input = ''.join(random.choice(string.ascii_uppercase) for _ in range(rand_len))
+            input_len = random.randint(1, 233)
+            possible_chars = [chr(x) for x in xrange(0, 256)]
+            input = ''.join(random.choice(possible_chars) for _ in range(input_len))
             print "Input:", input
             encrypted = encrypt(s, input)
             print "Encrypted:", encrypted
