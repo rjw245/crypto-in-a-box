@@ -25,7 +25,6 @@ class CryptoBox(object):
         """
         @brief      Encrypt a string with crypto box.
 
-        @param      serial_port  The serial port
         @param      input        The input, no newline at the end
 
         @return     The input, encrypted
@@ -44,7 +43,6 @@ class CryptoBox(object):
         """
         @brief      Decrypt a string with crypto box.
 
-        @param      serial_port  The serial port
         @param      input        The input, no newline at the end
 
         @return     The input, decrypted
