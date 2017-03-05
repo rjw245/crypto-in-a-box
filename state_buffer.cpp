@@ -8,7 +8,13 @@
 #include "state_decrypt.h"
 #include "state_idle.h"
 
-#define BUFFER_SIZE (256 + crypto_secretbox_ZEROBYTES)
+// Need crypto_secretbox_ZEROBYTES of room at the beginning
+// AND crypto_secretbox_BOXZEROBYTES at the end.
+// The crypto_secretbox_BOXZEROBYTES allows an encrypted input to fit
+// in the buffer when storage STARTS at index [crypto_secretbox_ZEROBYTES]
+#define BUFFER_SIZE (256 + \
+                     crypto_secretbox_ZEROBYTES + \
+                     crypto_secretbox_BOXZEROBYTES)
 
 static uint8_t input_len = 0;
 static uint8_t input_i = 0;
