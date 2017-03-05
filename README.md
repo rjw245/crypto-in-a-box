@@ -2,9 +2,10 @@
 Turns an Arduino (I used a RedStick from Sparkfun) in a cryptography token, allowing you to encrypt and decrypt messages with an unknown secret key using the NaCl encryption algorithm.
 
 The protocol is as follows:
---------------------------------------------------------------
-| Input len | Input byte 0 | ... | Input byte N | 'E' or 'D' |
---------------------------------------------------------------
+
+| Byte 0    | Byte 1 | ... | Byte N-1 | Byte N     |
+| --------- | ------ | --- | -------- | ---------- |
+| Input len | Input  | ... | Input    | 'E' or 'D' |
 
 Sending an 'E' as the last character tells the Arduino to attempt to
 encrypt the input, and send back the result.
